@@ -6,6 +6,10 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Controll-Allow-Origin, Authorization, X-Requested-With");
 
+
+
+//  vi du push code moi len github
+
 // database connection will be here
 // files needed to connect to database
 include_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "config/create_user.php");
