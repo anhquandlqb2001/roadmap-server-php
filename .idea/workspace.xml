@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fd7148b1-6cc5-4755-8f43-8e064b519f40" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/jean85/pretty-package-versions" />
+      <path value="$PROJECT_DIR$/vendor/mongodb/mongodb" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1jhAN9oqAqFWsxotHbBX87LivKA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mongo" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\rest-api-authentication" />
+      <recent name="C:\xampp\htdocs\rest-api-authentication\api" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fd7148b1-6cc5-4755-8f43-8e064b519f40" name="Default Changelist" comment="" />
+      <created>1604245909426</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604245909426</updated>
+      <workItem from="1604245911066" duration="6886000" />
+      <workItem from="1604287083321" duration="7982000" />
+      <workItem from="1604298985043" duration="5209000" />
+      <workItem from="1604328342397" duration="9516000" />
+      <workItem from="1604372796166" duration="5079000" />
+      <workItem from="1604384774599" duration="4050000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="860" y="58" key="#PHP" timestamp="1604250643848">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="860" y="58" key="#PHP/0.0.1536.824@0.0.1536.824" timestamp="1604250643848" />
+    <state x="0" y="135" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604388299356">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="0" y="135" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1604388299356" />
+    <state x="498" y="62" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604287174793">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="498" y="62" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1604287174793" />
+    <state x="1020" y="318" key="NewPhpFileDialog" timestamp="1604374465807">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="1020" y="318" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1604374465807" />
+    <state x="590" y="184" key="refactoring.ChangeSignatureDialog" timestamp="1604288180124">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="590" y="184" key="refactoring.ChangeSignatureDialog/0.0.1536.824@0.0.1536.824" timestamp="1604288180124" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1604300199033">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1604300199033" />
+    <state x="814" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1604299618279">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="814" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1604299618279" />
+  </component>
+</project>
