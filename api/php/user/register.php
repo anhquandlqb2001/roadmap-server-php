@@ -74,10 +74,10 @@ if(strlen($email_prefix) < 6) {
 
 // check email is exist
 $user = $collection->findOne(array(
-    "email" => $data->email
+    "email" => $email
 ));
 
-if (!isset($user)) {
+if (isset($user)) {
     $errors = array(
         array(
             "error" => "email",
@@ -90,21 +90,22 @@ if (!isset($user)) {
 
 
 // after checking -> sanitize input
-$email = str_replace("'", "''", [$email]);
-$password = str_replace("'", "''", [$password]);
+//$email = str_replace("'", "''", [$email]);
+//$password = str_replace("'", "''", [$password]);
 
 // encode password
 $password = hash("md5", $password);
 
 try {
-    $insertOneResult = $collection->insertOne([
+    $insertOneResult = $collection->insertOne(array(
         'email' => $email,
         'password' => $password,
-        'provider' => 'local',
-    ]);
+        'provider' => 'LOCAL',
+    ));
 } catch (Exception $e) {
     $errors = $e;
 }
+
 
 // if insert has problem
 if ($errors != null) {
@@ -123,7 +124,7 @@ http_response_code(200);
 echo json_encode(
     array(
         "success" => true,
-        "email" => $data->email
+        "message" => "Dang ky tai khoan thanh cong"
     )
 );
 
