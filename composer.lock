@@ -59,10 +59,6 @@
                 }
             ],
             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
-            "support": {
-                "issues": "https://github.com/composer/package-versions-deprecated/issues",
-                "source": "https://github.com/composer/package-versions-deprecated/tree/master"
-            },
             "funding": [
                 {
                     "url": "https://packagist.com",
@@ -127,10 +123,6 @@
                 "jwt",
                 "php"
             ],
-            "support": {
-                "issues": "https://github.com/firebase/php-jwt/issues",
-                "source": "https://github.com/firebase/php-jwt/tree/master"
-            },
             "time": "2020-03-25T18:49:23+00:00"
         },
         {
@@ -182,24 +174,20 @@
                 "release",
                 "versions"
             ],
-            "support": {
-                "issues": "https://github.com/Jean85/pretty-package-versions/issues",
-                "source": "https://github.com/Jean85/pretty-package-versions/tree/1.5.1"
-            },
             "time": "2020-09-14T08:43:34+00:00"
         },
         {
             "name": "mongodb/mongodb",
-            "version": "1.7.1",
+            "version": "1.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mongodb/mongo-php-library.git",
-                "reference": "b35af66631a11ee730ff1fde295f71e89f01f121"
+                "reference": "38b685191c047a57275d6ccd2ea5c50f23638485"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/b35af66631a11ee730ff1fde295f71e89f01f121",
-                "reference": "b35af66631a11ee730ff1fde295f71e89f01f121",
+                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/38b685191c047a57275d6ccd2ea5c50f23638485",
+                "reference": "38b685191c047a57275d6ccd2ea5c50f23638485",
                 "shasum": ""
             },
             "require": {
@@ -251,11 +239,7 @@
                 "mongodb",
                 "persistence"
             ],
-            "support": {
-                "issues": "https://github.com/mongodb/mongo-php-library/issues",
-                "source": "https://github.com/mongodb/mongo-php-library/tree/1.7.1"
-            },
-            "time": "2020-09-22T13:26:09+00:00"
+            "time": "2020-10-08T10:06:19+00:00"
         }
     ],
     "packages-dev": [],
@@ -266,5 +250,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "1.1.0"
 }

@@ -18,6 +18,13 @@ $data = json_decode(file_get_contents("php://input"));
 
 $errors = "";
 
+// echo json_encode(
+//     array(
+//         "data" => $collection
+//     )
+// );
+// return;
+
 function dataToSever($success, $error) {
     return json_encode(
         array(
@@ -77,7 +84,14 @@ $user = $collection->findOne(array(
     "email" => $data->email
 ));
 
-if (!isset($user)) {
+// echo json_encode(
+//     array(
+//         "data" => isset($user)
+//     )
+// );
+// return;
+
+if (isset($user)) {
     $errors = array(
         array(
             "error" => "email",
@@ -90,8 +104,8 @@ if (!isset($user)) {
 
 
 // after checking -> sanitize input
-$email = str_replace("'", "''", [$email]);
-$password = str_replace("'", "''", [$password]);
+// $email = str_replace("'", "''", [$email]);
+// $password = str_replace("'", "''", [$password]);
 
 // encode password
 $password = hash("md5", $password);
