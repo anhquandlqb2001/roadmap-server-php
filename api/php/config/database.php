@@ -10,7 +10,7 @@ class Database {
     // get the database connection
     public function getConnection() {
         $this->conn = null;
-
+// asdas
         try {
             $this->conn = (new MongoDB\Client($this->host))->roadmapphpdev;
             // new MongoDB\Driver\Manager("mongodb://localhost:27017")
