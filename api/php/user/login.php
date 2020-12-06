@@ -40,7 +40,7 @@ use \Firebase\JWT\JWT;
 
 // password_verify() function
 // check if email is exists and if password is correct
-if($email_exists && password_verìfy($data->password, $user->password)){
+if($email_exists && password_verify($data->password, $user->password)){
 
     $token = array(
         "iat" => $issued_at,

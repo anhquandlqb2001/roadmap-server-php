@@ -1,6 +1,7 @@
 <?php
 
 include_once '../../../vendor/autoload.php';
+include_once '../../../api/php/config/Database.php';
 
 // 'user' object
 class User {
@@ -14,6 +15,8 @@ class User {
     public $lastName;
     public $email;
     public $password;
+    public $id;
+    public $roadRegist;
 
     // constructor
     public function __constructor($db) {
@@ -46,6 +49,23 @@ class User {
         return false;
     }
 
+    public function updateRoad($roadRegist) {
+        if($roadRegist == null) {
+            return false;
+        }
+
+        // get connection database
+        $db = new Database();
+        $collection = $db->getConnection()->selectCollection("user-sample-data");
+
+        $data = $collection->findOne(
+            [
+            'maps._id' => $roadRegist['id']
+            ]
+        );
+
+        return $data;
+    }
 
     // update method()
 

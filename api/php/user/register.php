@@ -1,6 +1,7 @@
 <?php
 // required headers
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:3000");
+header('Access-Control-Allow-Credentials: true');
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
@@ -38,15 +39,15 @@ function dataToSever($success, $error) {
 $email = $data->email;
 $password = $data->password;
 
-if(empty($email) && empty($password)) {
+if(empty($email) || empty($password)) {
     $errors = array (
         array (
-            "error" => "email",
-            "message" => "email chua duoc nhap"
+            "name" => "email",
+            "error" => "email chua duoc nhap"
         ),
         array (
-            "error" => "password",
-            "message" => "mat khau chua duoc nhap"
+            "name" => "password",
+            "error" => "mat khau chua duoc nhap"
         )
     );
     echo dataToSever(false, $errors);
@@ -56,8 +57,8 @@ if(empty($email) && empty($password)) {
 if (strpos($data->email, "@") === false) {
     $errors = array(
         array(
-            "error" => "email",
-            "message" => "Email phai dung dinh dang"
+            "name" => "email",
+            "error" => "Email phai dung dinh dang"
         )
     );
 
@@ -70,9 +71,11 @@ $email_prefix = substr($email, 0, strpos($email, "@"));
 
 if(strlen($email_prefix) < 6) {
     $error = array(
-        "error" => "email prefix",
-        "message" => "email khong hop le",
-        "error-description" => "ten email it hon 6 ki tu"
+        array(
+            "name" => "email",
+            "error" => "email khong hop le",
+        // "error-description" => "ten email it hon 6 ki tu"
+        )
     );
     echo dataToSever(false, $error);
     return;
@@ -81,21 +84,14 @@ if(strlen($email_prefix) < 6) {
 
 // check email is exist
 $user = $collection->findOne(array(
-    "email" => $data->email
+    "email" => $email
 ));
-
-// echo json_encode(
-//     array(
-//         "data" => isset($user)
-//     )
-// );
-// return;
 
 if (isset($user)) {
     $errors = array(
         array(
-            "error" => "email",
-            "message" => "Email da ton tai"
+            "name" => "email",
+            "error" => "Email da ton tai"
         )
     );
     echo dataToSever(false, $errors);
@@ -104,18 +100,18 @@ if (isset($user)) {
 
 
 // after checking -> sanitize input
-// $email = str_replace("'", "''", [$email]);
-// $password = str_replace("'", "''", [$password]);
+//$email = str_replace("'", "''", [$email]);
+//$password = str_replace("'", "''", [$password]);
 
 // encode password
 $password = hash("md5", $password);
 
 try {
-    $insertOneResult = $collection->insertOne([
+    $insertOneResult = $collection->insertOne(array(
         'email' => $email,
         'password' => $password,
-        'provider' => 'local',
-    ]);
+        'provider' => 'LOCAL',
+    ));
 } catch (Exception $e) {
     $errors = $e;
 }
@@ -137,8 +133,6 @@ http_response_code(200);
 echo json_encode(
     array(
         "success" => true,
-        "email" => $data->email
+        "message" => "Dang ky tai khoan thanh cong"
     )
 );
-
-?>
