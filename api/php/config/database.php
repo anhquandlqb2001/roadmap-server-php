@@ -10,9 +10,8 @@ class Database {
     // get the database connection
     public function getConnection() {
         $this->conn = null;
-// asdas
         try {
-            $this->conn = (new MongoDB\Client($this->host))->roadmapphpdev;
+            $this->conn = (new MongoDB\Client($this->host))->WebCuoiKy;
             // new MongoDB\Driver\Manager("mongodb://localhost:27017")
         } catch(MongoConnectionException $e) {
             echo $e->getMessage();
