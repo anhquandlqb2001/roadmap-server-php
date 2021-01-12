@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '\..\..\vendor\autoload.php');
+require_once(dirname(__FILE__) . '/../../vendor/autoload.php');
 
 class AdminModel
 {
@@ -13,7 +13,6 @@ class AdminModel
     public function login($email, $password)
     {
         $collection = $this->conn->admins;
-
         $admin = $collection->findOne([
             "email" => $email,
             "password" => md5($password)
@@ -46,11 +45,12 @@ class AdminModel
         $objMapId = new MongoDB\BSON\ObjectId($mapId);
 
         $collection = $this->conn->maps;
-        
+
         // update map
         $result = $collection->updateOne(
             ["mapId" => $mapId],
-            ['$set' => 
+            [
+                '$set' =>
                 [
                     "name" => $name,
                     "description.tilte" => $title,
@@ -62,5 +62,11 @@ class AdminModel
         );
 
         return $result;
+    }
+    public function findUserByEmail($email)
+    {
+        $adminCollection = $this->conn->admins;
+
+        return $adminCollection->findOne(["email" => $email]);
     }
 }

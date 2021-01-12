@@ -1,16 +1,24 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Controll-Allow-Origin, Authorization, X-Requested-With");
 
-$jwt = \Firebase\JWT\JWT::decode($jwt, "WebCuoiKy", array("HS256"));
+$headers = apache_request_headers();
+$jwt = isset($headers["Authorization"]) ? $headers["Authorization"] : NULL ;
+if (!$jwt) {
+    echo json_encode([
+        'success' => false
+    ]);
+    return;
+}
+$user = verifyUser($jwt);
 // var_dump($jwt);
 
-$userId = $jwt->id->{'$oid'};
-$userEmail = $jwt->email;
+$userId = $user["id"]->{'$oid'};
+$userEmail = $user["email"];
 $mapId = filter_input(INPUT_GET, "mapId");
 $text = $data->text;
 

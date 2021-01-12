@@ -1,5 +1,5 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: http://localhost:3000");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
@@ -34,8 +34,8 @@ $password = htmlspecialchars(strip_tags($data->password));
 
 if(strpos($email, '@gmail.com') === false) {
     $error = [
-        "field" => "email",
-        "message" => "email khong dung dinh dang"
+        "name" => "email",
+        "error" => "email khong dung dinh dang"
     ];
     echo dataToSever(false, $error);
     return;
@@ -54,8 +54,8 @@ if(strpos($email, '@gmail.com') === false) {
 
 if(strlen($password) < 3) {
     $error = array(
-        "error" => "password",
-        "message" => "mat khau qua ngan"
+        "name" => "password",
+        "error" => "mat khau qua ngan"
     );
     echo dataToSever(false, $error);
     return;
@@ -65,8 +65,8 @@ $user = $userModel->findUserByEmail($email);
 
 if(!empty($user)) {
     $error = array (
-        "error" => "email",
-        "message" => "email da ton tai"
+        "name" => "email",
+        "error" => "email da ton tai"
     );
     echo dataToSever(false, $error);
     return;
@@ -76,7 +76,6 @@ if(!empty($user)) {
 $password = hash("md5", $password);
 
 $response = $userModel->register($email, $password);
-var_dump($response);
 
 if($response)
 {

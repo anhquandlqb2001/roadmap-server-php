@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '\..\..\vendor\autoload.php');
+require_once(dirname(__FILE__) . '/../../vendor/autoload.php');
 
 class CommontModel
 {
@@ -18,7 +18,6 @@ class CommontModel
             ["_id" => new MongoDB\BSON\ObjectId("5ff5cde46c25817df333a09d")],
             ['$set' => array("heading" => $heading, "detail" => $detail)]
         );
-
         return $result;
     }
 

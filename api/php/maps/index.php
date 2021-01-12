@@ -1,13 +1,23 @@
 <?php
 
+$allowedOrigins = [
+    "http://localhost:3000",
+    "http://localhost:3001"
+];
+
+if (in_array($_SERVER["HTTP_ORIGIN"], $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: " . $_SERVER["HTTP_ORIGIN"]);
+}
 // include_once("index.php");
-require_once(dirname(__FILE__) . '\..\..\..\vendor\autoload.php');
-require_once(dirname(__FILE__) . '\..\..\config\Database.php');
-require_once(dirname(__FILE__) . '\..\..\models\MapModel.php');
+// require_once(dirname(__FILE__) . '\..\..\..\vendor\autoload.php');
+require_once "../../../vendor/autoload.php";
+// require_once(dirname(__FILE__) . '\..\..\config\Database.php');
+require_once "../../config/Database.php";
+// require_once(dirname(__FILE__) . '\..\..\models\MapModel.php');
+require_once "../../models/MapModel.php";
 // required headers
-header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Controll-Allow-Origin, Authorization, X-Requested-With");
 
@@ -39,9 +49,9 @@ switch($action)
             include("getMapContent.php");
         break;
         }
-    case "":
+    case "getDocumentPath":
         {
-            
+            include "getDocumentPath.php";
         break;
         }
 

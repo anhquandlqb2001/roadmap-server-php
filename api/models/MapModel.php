@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__) . '\..\..\vendor\autoload.php');
+require_once(dirname(__FILE__) . '/../../vendor/autoload.php');
 
 class MapModel
 {
@@ -52,16 +52,32 @@ class MapModel
         // $objUserId = new MongoDB\BSON\ObjectId($userId);
 
         $result = $this->conn->users->findOne(["_id" => $objMapId, "maps.mapId" => $objMapId], ["projection" => ["maps.map" => 1]]);
-        var_dump($result);
+        // var_export($result);
+        $map = json_decode(json_encode($result->maps), true);
+        
+        // return $map["map"];
+        $data = new stdClass();
+        $mapObj = json_decode(json_encode($result->maps), true);
+        // var_dump($result->maps);
+        $data->map = $mapObj;
+        return $data;
+    }
+
+    public function getMapDocumentation($mapId)
+    {
+        $objMapId = new MongoDB\BSON\ObjectId($mapId);
+        // $objUserId = new MongoDB\BSON\ObjectId($userId);
+
+        $result = $this->conn->maps->findOne(["_id" => $objMapId], ["projection" => ["documentation" => 1]]);
         // var_export($result);
         // $map = json_decode(json_encode($result->maps), true);
         
         // return $map["map"];
-        // $data = new stdClass();
-        // $mapObj = json_decode(json_encode($result->maps), true);
-        // // var_dump($result->maps);
-        // // $data->map = $mapObj;
-        // // return $data;
+        $data = new stdClass();
+        $mapObj = json_decode(json_encode($result->documentation), true);
+        // var_dump($result->maps);
+        $data->documentation = $mapObj;
+        return $data;
     }
 
     public function updateMap($jwt, $mapId, $name, $title, $detail, $path, $introduction)
@@ -77,12 +93,33 @@ class MapModel
             ['$set' => 
                 [
                     "name" => $name,
-                    "description.tilte" => $title,
+                    "description.title" => $title,
                     "description.detail" => $detail,
                     "documentation.path" => $path,
                     "introduction" => $introduction
                 ]
             ]
+        );
+
+        return $result;
+    }
+
+    public function addMap($jwt, $mapId, $name, $title, $detail, $path, $introduction, $map)
+    {
+        // convert to mongo object
+        $objMapId = new MongoDB\BSON\ObjectId($mapId);
+
+        $collection = $this->conn->maps;
+        
+        // update map
+        $result = $collection->insertOne(
+                [
+                    "name" => $name,
+                    "description" => ["title" => $title, "detail" => $detail],
+                    "documentation" => ["path" => $path],
+                    "introduction" => $introduction,
+                    "map" => $map
+                ]
         );
 
         return $result;

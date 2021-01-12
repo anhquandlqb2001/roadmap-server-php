@@ -1,10 +1,18 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+// header("Access-Control-Allow-Origin: *");
+$allowedOrigins = [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://192.168.43.45:3000"
+  ];
+  
+  if (in_array($_SERVER["HTTP_ORIGIN"], $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: " . $_SERVER["HTTP_ORIGIN"]);
+  }
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Controll-Allow-Origin, Authorization, X-Requested-With");
-
 
 //$SECRET_KEY = "webcuoiky";
 $db = new Database();
@@ -12,6 +20,14 @@ $userModel = new UserModel($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
+function dataToSever($success, $error) {
+    return json_encode(
+        array(
+            "success" => $success,
+            "errors" => [$error]
+        )
+    );
+}
 
 // sanitize
 $email = htmlspecialchars(strip_tags($data->email));
@@ -19,8 +35,8 @@ $password = htmlspecialchars(strip_tags($data->password));
 
 if(strpos($email, '@gmail.com') === false) {
     $error = array(
-        "error" => "email",
-        "message" => "email khong dung dinh dang"
+        "name" => "email",
+        "error" => "email khong dung dinh dang"
     );
     echo dataToSever(false, $error);
     return;
@@ -29,8 +45,8 @@ if(strpos($email, '@gmail.com') === false) {
 
 if(strlen($password) < 3) {
     $error = array(
-        "error" => "password",
-        "message" => "mat khau qua ngan"
+        "name" => "password",
+        "error" => "mat khau qua ngan"
     );
     echo dataToSever(false, $error);
     return;
@@ -40,10 +56,8 @@ $user = $userModel->findUserByEmail($email);
 
 if(empty($user)) {
     $error = array (
-        array(
-            "error" => "email",
-            "message" => "email khong ton tai"
-        )
+            "name" => "email",
+            "error" => "email khong ton tai"
     );
     echo dataToSever(false, $error);
     return;
@@ -55,8 +69,8 @@ $password = hash("md5", $password);
 if($user->password !== $password) {
     $error = array (
         array(
-            "error" => "password",
-            "message" => "sai mat khau"
+            "name" => "password",
+            "error" => "sai mat khau"
         )
     );
     echo dataToSever(false, $error);

@@ -10,6 +10,17 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Controll-Allow-Origin
 $db = new Database();
 $userModel = new UserModel($db);
 
+$headers = apache_request_headers();
+$jwt = isset($headers["Authorization"]) ? $headers["Authorization"] : NULL ;
+
+if(!$jwt)
+{
+    echo json_encode(array(
+        "success" => false
+    ));
+    return;
+}
+
 // get jwt
 $jsonData = json_decode(file_get_contents("php://input"));
 

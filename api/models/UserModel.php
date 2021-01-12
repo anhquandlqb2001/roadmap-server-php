@@ -1,6 +1,6 @@
 <?php
-require_once(dirname(__FILE__) . '\..\..\vendor\autoload.php');
-require_once(dirname(__FILE__) . '\..\libs\findOneAndUpdate.php');
+require_once(dirname(__FILE__) . '/../../vendor/autoload.php');
+require_once(dirname(__FILE__) . '/../libs/findOneAndUpdate.php');
 
 
 class UserModel
@@ -61,12 +61,23 @@ class UserModel
         $objUserId = new MongoDB\BSON\ObjectId($userId);
 // 
         $result = $collection->findOne(
-            ["_id" => $objUserId, "maps.mapId" => $objMapId]
+            ["_id" => $objUserId]
         );
+
+        $userMap = NULL;
+        
+        foreach($result->maps as $map => $data)
+        {
+            if($data->mapId == $objMapId)
+            {
+                $userMaps = $data->map;
+            break;
+            }
+        }
 
         // var_export($result->maps[0]);
 
-        $map = json_decode($result->maps[0]["map"], true);
+        $map = json_decode($userMaps, true);
         // convert mongo object to array 
         // $result = json_decode(json_encode($result), true);
         // echo gettype($result);
@@ -110,7 +121,6 @@ class UserModel
         }
 
         $map = $mapCollection->findOne(["_id"=>$objMapId],["projection" => ["map" => 1]]);
-
         $newMaps = array();
 
         foreach($user->maps as $key)
@@ -127,8 +137,6 @@ class UserModel
         $newMaps[] = $importedMap;
 
         // $newMaps[] = $user->maps;
-        var_dump($newMaps);
-
         $userCollection->updateOne(["_id"=>$objUserId],
         [
             '$set'=> ["maps" => $newMaps]
